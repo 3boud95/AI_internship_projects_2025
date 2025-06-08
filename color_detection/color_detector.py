@@ -2,8 +2,9 @@ import cv2 as cv
 import pandas as pd
 
 #load csv file
-color_data = pd.read_csv('color.csv')
+color_data = pd.read_csv('colors.csv')
 
+#get the color from the list of colors
 def get_color_name(R, G, B):
     min_dist = float('inf')
     color_name = ""
@@ -15,6 +16,7 @@ def get_color_name(R, G, B):
             color_name = color_data.loc[i, 'color_name']
     return color_name
 
+# Function to handle mouse click events
 def draw_function(event, x, y, flags, param):
     if event == cv.EVENT_LBUTTONDOWN:
         global clicked, r, g, b, xpos, ypos
@@ -22,18 +24,28 @@ def draw_function(event, x, y, flags, param):
         xpos = x
         ypos = y
 
+#gets webcam input
 cap = cv.VideoCapture(0)
+#initialize flag
 clicked = False
+#initialize variables for color values and position
 xpos = ypos = r = g = b = 0
 
+#create a window and set mouse callback
 cv.namedWindow('Color Detector')
 cv.setMouseCallback('Color Detector', draw_function)
 
+# Main loop to capture video frames
 while True:
+
+    # Read a frame from the webcam
     ret, frame = cap.read()
+
+    # Check if the frame was captured successfully
     if not ret:
         break
 
+    # Flip the frame horizontally for a mirror effect
     display_frame = frame.copy()
 
     if clicked:
