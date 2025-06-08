@@ -21,10 +21,8 @@ def draw_function(event, x, y, flags, param):
         clicked = True
         xpos = x
         ypos = y
-        b, g, r = img[y, x]
-        b, g, r = int(b), int(g), int(r)
 
-img = cv.imread('test_img.jpg')
+cap = cv.VideoCapture(0)
 clicked = False
 xpos = ypos = r = g = b = 0
 
@@ -32,13 +30,21 @@ cv.namedWindow('Color Detector')
 cv.setMouseCallback('Color Detector', draw_function)
 
 while True:
-    display_img = img.copy()
-    if clicked:
-        text = f'{get_color_name(r, g, b)} (R={r} G={g} B={b})'
-        cv.rectangle(display_img, (20, 20), (750, 60), (b, g, r), -1)
-        cv.putText(display_img, text, (30, 50), 2, 0.8, (255, 255, 255) if r + g + b < 400 else (0, 0, 0), 2)
+    ret, frame = cap.read()
+    if not ret:
+        break
 
-    cv.imshow('Color Detector', display_img)
+    display_frame = frame.copy()
+
+    if clicked:
+        b, g, r = frame[ypos, xpos]
+        b, g, r = int(b), int(g), int(r)
+        color_name = get_color_name(r, g, b)
+        text = f'{color_name} (R={r} G={g} B={b})'
+        cv.rectangle(display_frame, (20, 20), (750, 60), (b, g, r), -1)
+        cv.putText(display_frame, text, (30, 50), 2, 0.8, (255, 255, 255) if r + g + b < 400 else (0, 0, 0), 2)
+
+    cv.imshow('Color Detector', display_frame)
 
     if cv.waitKey(20) & 0xFF == 27:  # ESC key
         break
