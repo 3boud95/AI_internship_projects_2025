@@ -5,9 +5,7 @@ import os
 import time
 import requests
 import pyjokes
-import subprocess
 import re
-from word2number import w2n
 
 # Initialize the speech recognizer and text-to-speech engine
 recognizer = sr.Recognizer()
@@ -58,7 +56,7 @@ def listen_for_wake_word():
                 speak("Speech service unavailable.")
                 break
 
-# for multiple listen trie
+# for multiple listen tries
 def retry_listen(max_attempts=3):
     for attempt in range(max_attempts):
         response = listen()
@@ -128,6 +126,8 @@ def extract_minutes(text):
 def handle_command(command):
     if "your name" in command:
         speak("My name is Pablo. Nice to meet you.")
+    elif "hello" in command:
+        speak("Hello! Pablo at you're service.")
     elif "open google" in command:
         speak("Opening Google.")
         webbrowser.open("https://www.google.com")
