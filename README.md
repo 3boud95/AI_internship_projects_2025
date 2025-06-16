@@ -2,6 +2,6 @@
 
 A collection of beginner AI projects created during my summer internship.  
 Projects:
-- 🎨 Color Detection
+- 🎨 Color Indentifier
 - 😷 Face Mask Detection
 - 🗣️ Voice Assistant
