@@ -58,6 +58,7 @@ def listen_for_wake_word():
                 speak("Speech service unavailable.")
                 break
 
+# for multiple listen tries
 def retry_listen(max_attempts=3):
     for attempt in range(max_attempts):
         response = listen()
