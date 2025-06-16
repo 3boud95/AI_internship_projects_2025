@@ -1,11 +1,14 @@
-# 🎨 Real-Time Color Detection with OpenCV
+# 🎨 Color Identifier in Image or Video with OpenCV
 
-A simple Python tool that detects the color name of any pixel clicked on — using live webcam feed.
-
+This is a Python-based tool to identify and display the name of a color when you click anywhere on an image or a video. It works using OpenCV and a color database in CSV format.
 ## 🚀 Features
-- Real-time color detection using your webcam
-- Matches clicked pixel color with the closest match from a CSV dataset
-- Displays RGB values and detected color name on screen
+- Supports both images and videos
+
+- Detects color names using RGB matching
+
+- Displays a color label bar and RGB values when you click
+
+- Closes easily by pressing Esc
 
 ## 🖥 How to Run
 1. Install dependencies:
@@ -15,7 +18,13 @@ A simple Python tool that detects the color name of any pixel clicked on — usi
    ```bash
    python color_detector.py
    ```
-3. Click on any part of the camera window to detect its color.
+You’ll be prompted to enter a file path:
+
+For images: JPG, PNG, etc.
+
+For videos: MP4, AVI, etc.
+
+Click anywhere inside the window to see the color name and RGB values.
 
 ## 🧠 Technologies Used
 - Python
@@ -25,5 +34,14 @@ A simple Python tool that detects the color name of any pixel clicked on — usi
 ## 📂 Dataset
 ``color.csv`` contains RGB values and color names sourced from a public dataset.
 
+## 💡 Notes
+- Press Esc to exit at any time.
+
+- Video detection updates in real time frame-by-frame.
+
+- RGB color matching is done via Manhattan distance.
+
+
+
 ---
-Made with ❤️ for an AI Internship project.
+Made with 💪 for an AI Internship project.
